@@ -1,0 +1,23 @@
+@font-face{font-family:'Tempting';src:url(../fonts/Tempting.otf) format('opentype');font-display:swap}
+@font-face{font-family:'Great Vibes';src:url(../fonts/GreatVibes-Regular.woff2) format('woff2'),url(../fonts/GreatVibes-Regular.ttf) format('truetype');font-display:swap}
+body{margin:0;background:#ECE7DE;font-family:'Inter',system-ui,sans-serif;color:#24231F;-webkit-font-smoothing:antialiased}
+a{color:inherit}a:hover{color:#B4610A}
+.hero-bg{background-image:linear-gradient(180deg,rgba(20,24,28,.55) 0%,rgba(20,24,28,.25) 40%,rgba(20,20,16,.7) 100%),url(../img/hero.jpg);background-size:cover;background-position:center}
+.sol-bg{background-image:linear-gradient(180deg,rgba(25,28,30,.72),rgba(25,28,30,.55)),url(../img/hero.jpg);background-size:cover;background-position:center 70%}
+.wordmark{background:linear-gradient(180deg,#FFDD8E 0%,#F39A2B 55%,rgba(190,95,15,.22) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sand{background:linear-gradient(180deg,#FFE3A6,#F2A03A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hscroll{scrollbar-width:thin}
+input,select,textarea{font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid #D9AE74;outline-offset:1px}
+
+html{scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+img{max-width:100%}
+.kw-btn{min-height:46px;min-width:64px;padding:10px 16px;font-size:15px;font-family:inherit;cursor:pointer;border:1px solid #24231F;background:transparent;color:#24231F}
+.kw-btn[aria-pressed="true"]{background:#24231F;color:#F5F1EA}
+@media (max-width:640px){
+  .wa-float{right:14px!important;bottom:14px!important;font-size:15px!important;padding:5px 16px 5px 5px!important}
+  .wa-float>span{width:38px!important;height:38px!important}
+  nav[aria-label="Main"] img{width:104px!important;height:88px!important}
+  nav[aria-label="Main"]{padding:16px 20px!important}
+}
