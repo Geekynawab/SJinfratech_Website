@@ -3,7 +3,7 @@
   'use strict';
 
   // ▼▼ SET YOUR WHATSAPP NUMBER HERE: country code + number, digits only (e.g. 919876543210) ▼▼
-  var WHATSAPP_NUMBER = '91XXXXXXXXXX';
+  var WHATSAPP_NUMBER = '918019814311';
   // ▲▲ ------------------------------------------------------------------------------------ ▲▲
 
   var num = WHATSAPP_NUMBER.replace(/[^0-9]/g, '');

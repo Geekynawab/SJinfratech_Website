@@ -18,7 +18,7 @@ CNAME                   custom domain for GitHub Pages
 Open `assets/js/main.js` and change this line:
 
 ```js
-var WHATSAPP_NUMBER = '91XXXXXXXXXX';
+var WHATSAPP_NUMBER = '918019814311';
 ```
 
 Write the number with the country code and digits only, for example `919876543210`. Every WhatsApp button on the site uses this one number.
