@@ -123,9 +123,9 @@ for (const subsidy of bools) for (const gruhaJyothi of bools) for (const houses 
   if (gruhaJyothi && state === 'TG' && type === 'home' && r.monthlyUnits <= 200) check(r.billBefore === 0 && r.monthlySaving === 0, 'Gruha Jyothi homes under 200 units save nothing', { inp });
   if (gruhaJyothi && state === 'TG' && type === 'home' && r.monthlyUnits > 200 && !r.limitedBy) {
     const needed = r.monthlyUnits - 200;
-    check(r.systemKw * cfg.unitsPerKwMonth >= needed || r.systemKw === Math.max(1, Math.round(r.monthlyUnits / cfg.unitsPerKwMonth)), 'Gruha Jyothi: system brings net use to ≤200 units', { inp, kw: r.systemKw });
-    check(r.systemKw === 1 || (r.systemKw - 1) * cfg.unitsPerKwMonth < needed, 'Gruha Jyothi: no bigger than needed', { inp, kw: r.systemKw });
-    if (r.systemKw * cfg.unitsPerKwMonth >= needed) check(r.billAfter === 0, 'Gruha Jyothi: bill after solar is zero', { inp, after: r.billAfter });
+    check(r.systemKw * cfg.unitsPerKwMonth[state] >= needed || r.systemKw === Math.max(1, Math.round(r.monthlyUnits / cfg.unitsPerKwMonth[state])), 'Gruha Jyothi: system brings net use to ≤200 units', { inp, kw: r.systemKw });
+    check(r.systemKw === 1 || (r.systemKw - 1) * cfg.unitsPerKwMonth[state] < needed, 'Gruha Jyothi: no bigger than needed', { inp, kw: r.systemKw });
+    if (r.systemKw * cfg.unitsPerKwMonth[state] >= needed) check(r.billAfter === 0, 'Gruha Jyothi: bill after solar is zero', { inp, after: r.billAfter });
   }
   if (r.limitedBy) check(!r.notes.some(n => /bill becomes free/.test(n)), 'no "bill becomes free" note when size is limited', { inp, notes: r.notes });
   if (r.notes.some(n => /bill becomes free/.test(n))) check(r.billAfter === 0, '"bill becomes free" note only when bill after is zero', { inp, after: r.billAfter });

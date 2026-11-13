@@ -16,7 +16,9 @@
 
   // ───────────────────────────── Assumptions (edit here) ─────────────────────────────
   var CONFIG = {
-    unitsPerKwMonth: 120,        // average generation per kW per month in Telangana/AP (≈4 kWh/kW/day)
+    // Average generation per kW per month. Cross-checked against Vikram Solar's state PLF (Nov 2026):
+    // Telangana ≈1,390 kWh/kW/yr (116/month), Andhra Pradesh ≈1,270 kWh/kW/yr (106/month).
+    unitsPerKwMonth: { TG: 116, AP: 106 },
     sqftPerKw: 100,              // shadow-free roof area needed per kW
     minKw: 1,                    // smallest system (net-metering minimum 1 kWp)
     maxKw: 1000,                 // net-metering ceiling 1 MWp
@@ -166,13 +168,14 @@
     var billBefore = monthlyBill(state, type, units, gruha);
 
     // ── Size
-    var needKw = units / CONFIG.unitsPerKwMonth;
+    var perKwMonth = CONFIG.unitsPerKwMonth[state];
+    var needKw = units / perKwMonth;
     var kw = Math.max(CONFIG.minKw, Math.round(needKw));
     var limitedBy = null;
     // Gruha Jyothi homes: the bill is free once net use is ≤ 200 units, so size just enough to get there.
     var gruhaSized = false;
     if (gruha && units > CONFIG.gruhaJyothiLimit) {
-      var gruhaKw = Math.max(CONFIG.minKw, Math.ceil((units - CONFIG.gruhaJyothiLimit) / CONFIG.unitsPerKwMonth));
+      var gruhaKw = Math.max(CONFIG.minKw, Math.ceil((units - CONFIG.gruhaJyothiLimit) / perKwMonth));
       if (gruhaKw < kw) { kw = gruhaKw; gruhaSized = true; }
     }
     if (roof > 0) {
@@ -193,7 +196,7 @@
     var subsidy = subsidyFor(type, kw, houses, eligible && (type === 'home' || type === 'society'));
     var netCost = Math.max(0, gross - subsidy);
 
-    var genMonth = kw * CONFIG.unitsPerKwMonth;
+    var genMonth = kw * perKwMonth;
     var gridAfter = Math.max(0, units - genMonth);
     var billAfter = monthlyBill(state, type, gridAfter, gruha);
     var monthlySaving = Math.max(0, billBefore - billAfter);

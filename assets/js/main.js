@@ -26,7 +26,7 @@
   function renderCalc() {
     var s = subsidyFor(kw);
     setOut('subsidy', inr(s));
-    setOut('units', inr(kw * 120));
+    setOut('units', inr(kw * 116));
     setOut('area', inr(kw * 100));
     setOut('usage', inr(kw * 100) + '–' + inr(kw * 140));
     setOut('kwLabel', kw + ' kW');
