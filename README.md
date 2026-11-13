@@ -9,6 +9,9 @@ Plain HTML, CSS and JavaScript. No build step and no server code, so any static 
 index.html              the page
 assets/css/style.css    styles
 assets/js/main.js       subsidy calculator + WhatsApp links
+assets/js/solar-calc.js savings calculator engine (tariffs, subsidy, sizing, payback)
+assets/js/calculator-ui.js  savings calculator form
+tests/                  calculator test suite (node tests/solar-calc.test.js)
 assets/img/             hero image, logo, favicons
 assets/fonts/           Tempting (capital S) + Great Vibes (wordmark)
 CNAME                   custom domain for GitHub Pages
@@ -34,3 +37,12 @@ Open `index.html` in a browser, or run `python3 -m http.server` in this folder a
 - **Tempting**: the file included is the *personal use* version. **Buy a commercial/web licence before launch.**
 
 Inter and Inter Tight load from Google Fonts.
+
+## Savings calculator
+All the assumptions are in `CONFIG` at the top of `assets/js/solar-calc.js`:
+- **priceBands**: installed price per kW by system size. **Set these to your own prices.**
+- unitsPerKwMonth (120), sqftPerKw (100), degradation (0.5%/yr), tariff rise (2%/yr), 25-year life.
+
+The tariffs are the TGERC FY 2026-27 schedule (TGSPDCL/TGNPDCL) and the APERC FY 2026-27 schedule (no change from FY 2025-26). The subsidy follows PM Surya Ghar. Housing-society common areas use the domestic tariff (an assumption).
+
+After changing anything, run `node tests/solar-calc.test.js` to recheck every input combination.

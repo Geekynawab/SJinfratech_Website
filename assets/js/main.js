@@ -7,6 +7,7 @@
   // ▲▲ ------------------------------------------------------------------------------------ ▲▲
 
   var num = WHATSAPP_NUMBER.replace(/[^0-9]/g, '');
+  window.SJ_WHATSAPP = num; // shared with the savings calculator
   function wa(text) {
     return 'https://wa.me/' + num + '?text=' + encodeURIComponent(text);
   }
